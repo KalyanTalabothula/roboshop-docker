@@ -1,2 +1,4 @@
 FROM node20
-WORKDIR /
+WORKDIR /opt/server
+COPY package.json .
+COPY *.js . 
