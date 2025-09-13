@@ -1,1 +1,2 @@
 FROM node20
+WORKDIR /
