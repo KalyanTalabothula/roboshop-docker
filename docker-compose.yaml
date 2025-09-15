@@ -1,0 +1,42 @@
+networks:
+  default:
+    driver: bridge
+    name: roboshop
+    #external: true # I created network already using docker netwrok create roboshop
+    # For the all the services in this playbook, I mean in this yaml file. 
+    # Alraedy create cheste external : true ani istam. ledu ante create chestumdhi network anedi..
+services:
+  mongodb:
+    image: kalyantalabothula/mongodb:v1
+    container_name: mongodb
+  catalogue:
+    image: kalyantalabothula/catalogue:v1
+    container_name: catalogue
+    depends_on:
+    - mongodb
+  redis:
+    image: redis:7.0
+    conatiner_name: redis
+  user:
+    image: kalyantalabothula/user:v1
+    container_name: user
+    depends_on:
+    - redis
+    - mongodb
+  cart: 
+    image: kalyantalabothula/cart:v1
+    container_name: cart
+    depends_on:
+    - redis
+    - catalogue
+  mysql:
+    image: kalyantalabothula/mysql:v1
+    container_name: mysql
+  shipping:
+    image: kalyantalabothula/shipping:v1
+    container_name: shipping
+    depends_on: 
+    - mysql
+    - cart
+    
+
