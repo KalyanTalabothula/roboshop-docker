@@ -62,4 +62,14 @@ services:
     - rabbitmq
     - user
     - cart
-    
+  frontend:
+    image: kalyantalabothula/frontend:v1
+    container_name: frontend
+    ports:
+    - "80:80" # host port: container port
+    depends_on:
+    - catalogue
+    - user
+    - user
+    - shipping
+    - payment
