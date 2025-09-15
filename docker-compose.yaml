@@ -38,10 +38,13 @@ services:
     depends_on: 
     - mysql
     - cart
+# rabbitmq ki oka system user/password ni create cheyali.. Documention lo ctrl+f= user enter 
+# so inka container create iyye tappude user/password ni create cheystumdhi.. aadi ela mention cheyali
+# yeppudu ite malli $ docker compose up -d ani este rest new gha add ina service matrame start avutumdhi.. 
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
-    environment:
+    environment:          # set environment variables
     RABBITMQ_DEFAULT_USER: roboshop
     RABBITMQ_DEFAULT_PASS: roboshop123 
 
