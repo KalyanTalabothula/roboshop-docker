@@ -5,10 +5,18 @@ networks:
     #external: true # I created network already using docker netwrok create roboshop
     # For the all the services in this playbook, I mean in this yaml file. 
     # Alraedy create cheste external : true ani istam. ledu ante create chestumdhi network anedi..
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:   # docker volume create rabbitmq
 services:
   mongodb:
     image: kalyantalabothula/mongodb:v1
     container_name: mongodb
+    volumes:  # to mount
+    - mongodb:/data/db    # <-- no space  
+    # volume name: where it is stored in volume location, yekkada mount cheayli..
   catalogue:
     image: kalyantalabothula/catalogue:v1
     container_name: catalogue
@@ -17,6 +25,8 @@ services:
   redis:
     image: redis:7.0
     conatiner_name: redis
+    volumes:
+    - redis:/data
   user:
     image: kalyantalabothula/user:v1
     container_name: user
@@ -32,6 +42,8 @@ services:
   mysql:
     image: kalyantalabothula/mysql:v1
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
   shipping:
     image: kalyantalabothula/shipping:v1
     container_name: shipping
@@ -47,6 +59,8 @@ services:
     environment:          # set environment variables
     RABBITMQ_DEFAULT_USER: roboshop
     RABBITMQ_DEFAULT_PASS: roboshop123 
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
   payment:
     image: kalyantalabothula/payment:v1
     container_name: payment
