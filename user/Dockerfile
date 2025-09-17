@@ -10,3 +10,4 @@ RUN npm install
 
 CMD [ "node", "server.js" ]
 
+# Developer frequently ee package.json & .js files ee rondu marite Obvisoly dependencies kuda marataii kabatti, ela Frequently change ayye vii manam last lo pedatam. 
