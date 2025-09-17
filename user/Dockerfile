@@ -16,4 +16,4 @@ CMD [ "node", "server.js" ]
 # ENV REDIS_URL="redis://redis:6379" 
 # ENV MONGO_URL="mongodb://mongodb:27017/users"
 
-# ekkada ( ENV ) Environment instructions lo ela echham, appudu number of LAYERS & TIME perugutumdhi..
+# ekkada ( ENV ) Environment instructions lo ela echham, appudu number of LAYERS & TIME perugutumdhi.. little bit memory kuda peragachhu very little bit. 
