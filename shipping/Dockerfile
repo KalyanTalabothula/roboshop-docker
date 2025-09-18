@@ -15,6 +15,8 @@ USER roboshop
 CMD ["java","-jar","shipping.jar"]
 
 
+# Expose rayamdi raste manchide, but dhani valla pedda difference jaragadu..
+# system user create cheyali so RUN & ENV instructions are common.
 
 # FROM maven
 # WORKDIR /opt/server
