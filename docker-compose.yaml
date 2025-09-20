@@ -80,10 +80,10 @@ services:
     image: kalyantalabothula/frontend:v1
     container_name: frontend
     ports:
-    - "80:80" # host port: container port
+      - "80:80" # host port: container port
     depends_on:
-    - catalogue
-    - user
-    - cart
-    - shipping
-    - payment
+      - catalogue
+      - user
+      - cart
+      - shipping
+      - payment
