@@ -74,9 +74,9 @@ services:
       AMQP_USER: roboshop
       AMQP_PASS: roboshop123
     depends_on: 
-      - rabbitmq
-      - user
-      - cart
+    - rabbitmq
+    - user
+    - cart
   frontend:
     image: kalyantalabothula/frontend:v1
     container_name: frontend
