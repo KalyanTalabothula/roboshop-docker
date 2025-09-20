@@ -24,7 +24,7 @@ services:
     - mongodb
   redis:
     image: redis:7.0
-    conatiner_name: redis
+    container_name: redis
     volumes:
     - redis:/data
   user:
@@ -57,8 +57,8 @@ services:
     image: rabbitmq:3
     container_name: rabbitmq
     environment:          # set environment variables
-    RABBITMQ_DEFAULT_USER: roboshop
-    RABBITMQ_DEFAULT_PASS: roboshop123 
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123 
     volumes:
     - rabbitmq:/var/lib/rabbitmq
   payment:
