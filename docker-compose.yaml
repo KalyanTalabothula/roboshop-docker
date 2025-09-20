@@ -4,7 +4,8 @@ networks:
     name: roboshop
     #external: true # I created network already using docker netwrok create roboshop
     # For the all the services in this playbook, I mean in this yaml file. 
-    # Alraedy create cheste external : true ani istam. ledu ante create chestumdhi network anedi..
+    # Alraedy create cheste external : true ani istam. 
+    # Present external : true anedhi comment lo undhi ante ardham, docker compose run avutunnapud ade create chestumdhi network kuda, ala ney network lopala default ani undi kada --> means ee network lopala unna anni services ki ee network default ani ardham.
 volumes:
   mongodb:
   redis:
