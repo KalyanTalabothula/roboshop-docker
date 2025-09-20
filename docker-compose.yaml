@@ -15,7 +15,7 @@ services:
     image: kalyantalabothula/mongodb:v1
     container_name: mongodb
     volumes:  # to mount
-    - mongodb:/data/db    # <-- no space  
+      - mongodb:/data/db    # <-- no space  
     # volume name: where it is stored in volume location, yekkada mount cheayli..
   catalogue:
     image: kalyantalabothula/catalogue:v1
@@ -26,7 +26,7 @@ services:
     image: redis:7.0
     container_name: redis
     volumes:
-    - redis:/data
+      - redis:/data
   user:
     image: kalyantalabothula/user:v1
     container_name: user
@@ -43,7 +43,7 @@ services:
     image: kalyantalabothula/mysql:v1
     container_name: mysql
     volumes:
-    - mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
   shipping:
     image: kalyantalabothula/shipping:v1
     container_name: shipping
@@ -60,7 +60,7 @@ services:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123 
     volumes:
-    - rabbitmq:/var/lib/rabbitmq
+      - rabbitmq:/var/lib/rabbitmq
   payment:
     image: kalyantalabothula/payment:v1
     container_name: payment
