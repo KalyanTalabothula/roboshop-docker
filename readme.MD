@@ -152,3 +152,113 @@ That’s exactly how Docker containers work.
 | Attach new volume   | ❌ No                          | Filesystem layout fixed      |
 | Change network mode | ❌ No                          | Network namespace fixed      |
 | Commit as new image | ✅ Yes                         | Creates new image snapshot   |
+
+
+
+🐳 1️⃣ docker system df
+
+Purpose:
+
+Shows disk usage of Docker objects — how much space containers, images, volumes, and build cache are using.
+
+What it shows:
+
+    Total size of all images, containers, and volumes
+    Space that is reclaimable (unused/dangling resources)
+
+Command: 
+
+docker system df
+
+Sample Output:
+
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          12        3         4.5GB     3.2GB
+Containers      8         2         400MB     250MB
+Local Volumes   5         3         2.1GB     1.0GB
+Build Cache                          300MB     300MB
+
+
+Use case:
+
+  Check disk usage before cleaning up
+  Plan docker system prune or docker volume prune safely
+
+You might see a column called RECLAIMABLE.
+
+    Reclaimable = the amount of disk space that Docker could free if you removed unused resources
+    In other words, unused or dangling objects that are safe to delete
+
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          12        3         4.5GB     3.2GB
+Containers      8         2         400MB     250MB
+Local Volumes   5         3         2.1GB     1.0GB
+Build Cache                          300MB     300MB
+
+SIZE → total space used by that type
+RECLAIMABLE → the portion of that space you can free if you remove unused or dangling items
+
+✅ Example:
+
+Images: total 4.5GB
+    3.2GB is reclaimable → you can recover 3.2GB if you run:
+
+docker image prune       # removes dangling images
+# or more aggressively
+docker system prune -a   # removes unused images, stopped containers, and networks
+
+  Containers: 400MB total, 250MB reclaimable → stopped containers that are safe to delete
+  Volumes: 2.1GB total, 1.0GB reclaimable → volumes not attached to any container
+  Build Cache: 300MB reclaimable → old build layers that are no longer needed
+
+So yes ✅, RECLAIMABLE is the space you could free by running prune commands.
+
+
+
+Yes ✅ — exactly right!
+
+Let me clarify step by step:
+
+1. Deleting reclaimable (3.2GB) images
+      You are deleting dangling(Intermediate-layers) / unused images only.
+      Original / in-use images (1.3GB) remain untouched.
+      Running containers will not be affected.
+2. Next time you build or pull an image
+      Docker will recreate the image layers as needed.
+      So total size may increase again depending on what you build/pull.
+
+3. Effect on disk space
+
+      Deleting reclaimable images frees actual disk space immediately.
+      That 3.2GB becomes available on your system.
+
+✅ Summary:
+
+Deleting reclaimable = safe, frees disk space
+Original images = safe, not deleted
+New builds = may increase disk usage again
+
+So your understanding is correct — you will get more free space on your disk by deleting the reclaimable 3.2GB.
+
+🐳 2️⃣ docker stats
+
+Purpose:
+
+Shows real-time resource usage of running containers — CPU, memory, network, and disk I/O.
+
+Command:
+
+docker stats
+
+Sample Output (live streaming):
+
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     NET I/O      BLOCK I/O
+a1b2c3d4e5f6   mongodb    2.34%     256MiB / 2GiB        1.2MB / 3.4MB   12MB / 8MB
+b2c3d4e5f6g7   nginx      0.12%     12MiB / 512MiB       100kB / 200kB   0B / 0B
+
+
+Use case:
+
+  Monitor container performance live
+  Detect high CPU/memory usage
+  Debug performance issues
