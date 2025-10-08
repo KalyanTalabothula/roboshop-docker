@@ -88,3 +88,8 @@ services:
     - cart
     - shipping
     - payment
+
+# depends_on: --> means That means before run the Frontend component all microservice like (Backend + DB) will run ite ney next frontend run avvu ani chepputunnam. 
+
+# Network: total 4-types 
+# 1.Host  2.Bridge  3. Overlay  4.None
