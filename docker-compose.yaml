@@ -93,3 +93,7 @@ services:
 
 # Network: total 4-types 
 # 1.Host  2.Bridge  3. Overlay  4.None
+
+# Docker compose lo manam just docker compose up -d or docker compose down -d. manam build cheyala endhulo, first images anni build chesi manam run kosam docker compose up -d cheysam
+#  manual gha cheste BUILD and RUN appudu yemi ina modification cheste image lo like updates cheste image lo, manam container ni DELETE chesi malli build and RUN cheyali, aade Docker compose -d up ani iste ade chusukuntumdi. STOP/DELETE cheysi malli Build and RUN ani evvakunda.
+
