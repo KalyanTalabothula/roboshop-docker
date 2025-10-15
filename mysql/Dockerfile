@@ -7,3 +7,5 @@ COPY db/* /docker-entrypoint-initdb.d/
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# So ee mysql velli aa screte ni access cheysi, dhanini evn variable laga set cheysukovali..
